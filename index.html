@@ -839,6 +839,53 @@ footer {
   .coverage-inner { gap: 48px; }
 }
 
+
+/* PREVENT HORIZONTAL SCROLL ON ALL DEVICES */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+* {
+  max-width: 100%;
+}
+/* Fix any elements that might overflow */
+#stage-wrap, #stage, .img-layer {
+  max-width: 100vw !important;
+}
+.hero-word-row {
+  overflow: hidden !important;
+  width: 100% !important;
+}
+#hero-slam {
+  overflow: hidden !important;
+  width: 100vw !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+}
+@media (max-width: 768px) {
+  #hero-slam {
+    transform: translateY(-50%) !important;
+  }
+  .lc {
+    font-size: clamp(28px, 10vw, 70px) !important;
+  }
+  .le {
+    font-size: clamp(38px, 14vw, 100px) !important;
+  }
+  /* Stop shockwave rings causing overflow */
+  #sw1, #sw2 {
+    display: none !important;
+  }
+  /* Fix coverage map */
+  .coverage-map img {
+    max-width: 100% !important;
+  }
+  /* Fix any wide elements */
+  section {
+    overflow-x: hidden !important;
+  }
+}
+
 </style>
 <!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
