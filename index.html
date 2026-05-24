@@ -177,9 +177,6 @@ nav.scrolled { background: rgba(6,6,6,0.94); backdrop-filter: blur(14px); border
 }
 .hud-inner {
   max-width:720px;
-  background: rgba(0,0,0,0.52);
-  padding: 40px 48px;
-  border-radius: 4px;
   width:100%;
   transition:opacity 0.4s;
 }
@@ -300,7 +297,7 @@ nav.scrolled { background: rgba(6,6,6,0.94); backdrop-filter: blur(14px); border
   transition: color 0.3s;
 }
 .srow:hover .sinfo h3 { color: var(--gold-light); }
-.sinfo p { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: none; }
+.sinfo p { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 400px; }
 .sarr {
   width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -430,10 +427,10 @@ footer {
 
 .sl{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;display:inline-block;opacity:0;will-change:transform,opacity;animation:slamIn .55s cubic-bezier(.22,.61,.36,1) forwards;}
 .lc{font-size:clamp(56px,11vw,170px);color:var(--cream);letter-spacing:-1px;}
-.le{font-size:clamp(76px,16vw,240px);color:var(--gold);letter-spacing:-3px;}
+.le{font-size:clamp(76px,16vw,240px);color:transparent;-webkit-text-stroke:clamp(1px,.18vw,2.5px) var(--gold);letter-spacing:-3px;}
 @keyframes slamIn{0%{opacity:0;transform:translateX(var(--tx,0)) scale(1.3)}65%{opacity:1;transform:translateX(0) scale(.96)}82%{transform:translateX(0) scale(1.02)}100%{opacity:1;transform:translateX(0) scale(1)}}
-@keyframes fadeUp{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes sw{0%{transform:translate(-50%,-50%) scale(.2);opacity:.85}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
 
 /* COVERAGE MAP SECTION */
 .coverage{background:#0a0a0a;padding:120px 64px;border-top:1px solid var(--border)}
@@ -507,6 +504,45 @@ footer {
 
 
 /* Contact strip on hero */
+#hero-contact {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 64px;
+  background: rgba(6,6,6,0.72);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(200,168,75,0.2);
+  transition: opacity 0.4s;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.8s forwards;
+}
+.hc-item {
+  display: flex; align-items: center; gap: 12px;
+}
+.hc-icon {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(200,168,75,0.35);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hc-icon svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.hc-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 2px; }
+.hc-value { font-size: 14px; font-weight: 500; color: var(--cream); letter-spacing: 0.3px; }
+.hc-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
+.hc-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: #000;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 12px 28px; text-decoration: none;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+.hc-cta:hover { background: var(--gold-light); }
 
 
 /* Floating CTA */
@@ -628,6 +664,20 @@ footer {
   }
 
   /* HERO CONTACT STRIP */
+  #hero-contact {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+    align-items: flex-start;
+  }
+  .hc-divider { display: none; }
+  .hc-item { gap: 10px; }
+  .hc-value { font-size: 15px; }
+  .hc-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
 
   /* HUD — scene text */
   #hud {
@@ -850,14 +900,14 @@ footer {
     <div id="hero-slam" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;width:100%;pointer-events:none;">
       <div style="position:absolute;top:50%;left:50%;width:80vw;height:80vw;max-width:900px;max-height:900px;border-radius:50%;border:1px solid rgba(200,168,75,.5);opacity:0;transform:translate(-50%,-50%) scale(0);animation:sw .65s cubic-bezier(.22,.61,.36,1) .52s forwards;pointer-events:none;"></div>
       <div style="position:absolute;top:50%;left:50%;width:55vw;height:55vw;max-width:650px;max-height:650px;border-radius:50%;border:2px solid rgba(200,168,75,.22);opacity:0;transform:translate(-50%,-50%) scale(0);animation:sw .5s cubic-bezier(.22,.61,.36,1) .58s forwards;pointer-events:none;"></div>
-      <p style="font-family:'Syne',sans-serif;font-size:clamp(20px,3vw,48px);font-weight:800;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:12px;opacity:0;animation:fadeUp .5s ease 0s forwards;">Welcome to</p>
+      <p style="font-family:'Syne',sans-serif;font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:8px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:0;animation:fadeUp .6s ease 1.1s forwards;">Professional Tree Surgery</p>
+      <p style="font-family:'Syne',sans-serif;font-size:clamp(20px,3vw,48px);font-weight:800;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:8px;opacity:0;animation:fadeUp .5s ease 0s forwards;">Welcome to</p>
       <div style="display:flex;justify-content:center;line-height:.88;">
         <span class="sl lc" style="--tx:-320px;animation-delay:.05s">C</span><span class="sl lc" style="--tx:-220px;animation-delay:.10s">U</span><span class="sl lc" style="--tx:-130px;animation-delay:.16s">T</span><span class="sl lc" style="--tx:-40px;animation-delay:.22s">T</span><span class="sl lc" style="--tx:40px;animation-delay:.16s">I</span><span class="sl lc" style="--tx:130px;animation-delay:.10s">N</span><span class="sl lc" style="--tx:220px;animation-delay:.05s">G</span>
       </div>
       <div style="display:flex;justify-content:center;line-height:.88;">
         <span class="sl le" style="--tx:-280px;animation-delay:.05s">E</span><span class="sl le" style="--tx:-140px;animation-delay:.10s">D</span><span class="sl le" style="--tx:140px;animation-delay:.10s">G</span><span class="sl le" style="--tx:280px;animation-delay:.05s">E</span>
       </div>
-      <p style="font-family:'Syne',sans-serif;font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:8px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:0;animation:fadeUp .6s ease 1.1s forwards;">Professional Tree Surgery</p>
       <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(13px,1.4vw,18px);font-weight:300;font-style:italic;color:rgba(255,255,255,.42);letter-spacing:3px;margin-top:14px;opacity:0;animation:fadeUp .6s ease .95s forwards;">Where precision meets the canopy.</p>
     </div>
 
@@ -888,6 +938,41 @@ footer {
 
 
     <!-- Hero contact strip -->
+    <div id="hero-contact">
+      <div class="hc-item">
+        <div class="hc-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.41 2 2 0 0 1 3.56 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16v.92z"/></svg>
+        </div>
+        <div>
+          <div class="hc-label">Call us</div>
+          <div class="hc-value">07897 466 428</div>
+        </div>
+      </div>
+      <div class="hc-divider"></div>
+      <div class="hc-item">
+        <div class="hc-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="hc-label">Email us</div>
+          <div class="hc-value">3cuttingedge@gmail.com</div>
+        </div>
+      </div>
+      <div class="hc-divider"></div>
+      <div class="hc-item">
+        <div class="hc-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="hc-label">Coverage</div>
+          <div class="hc-value">Colchester, Chelmsford &amp; Ipswich</div>
+        </div>
+      </div>
+      <div class="hc-divider"></div>
+      <a href="#contact" class="hc-cta">Get a free quote &#8594;</a>
+    </div>
+  </div>
+</div>
 <!-- ══════════════════════════════════════════════════════ -->
 
 <!-- SERVICES -->
@@ -899,12 +984,12 @@ footer {
     </div>
     
   </div>
-  <div class="srow reveal d1"><div class="sinfo"><h3>Crown Reduction</h3><p>Careful reduction of the crown's overall size while maintaining the tree's natural form and health.</p></div></div>
-  <div class="srow reveal d2"><div class="sinfo"><h3>Tree Removal</h3><p>Safe, efficient removal of trees of all sizes — including tight access situations and stump grinding.</p></div></div>
-  <div class="srow reveal d3"><div class="sinfo"><h3>Crown Thinning</h3><p>Selective removal of branches to increase light and airflow without altering the overall shape.</p></div></div>
-  <div class="srow reveal"><div class="sinfo"><h3>Deadwooding</h3><p>Removal of dead, dying or diseased branches to improve safety and long-term tree health.</p></div></div>
-  <div class="srow reveal d1"><div class="sinfo"><h3>Hedge Trimming</h3><p>Precise shaping and maintenance of hedges to keep your property looking sharp year-round.</p></div></div>
-  <div class="srow reveal d2"><div class="sinfo"><h3>Emergency Call-out</h3><p>Rapid response for storm-damaged or hazardous trees. Available 7 days a week, any time of year.</p></div></div>
+  <div class="srow reveal d1"><span class="snum">01</span><div class="sinfo"><h3>Crown Reduction</h3><p>Careful reduction of the crown's overall size while maintaining the tree's natural form and health.</p></div></div>
+  <div class="srow reveal d2"><span class="snum">02</span><div class="sinfo"><h3>Tree Removal</h3><p>Safe, efficient removal of trees of all sizes — including tight access situations and stump grinding.</p></div></div>
+  <div class="srow reveal d3"><span class="snum">03</span><div class="sinfo"><h3>Crown Thinning</h3><p>Selective removal of branches to increase light and airflow without altering the overall shape.</p></div></div>
+  <div class="srow reveal"><span class="snum">04</span><div class="sinfo"><h3>Deadwooding</h3><p>Removal of dead, dying or diseased branches to improve safety and long-term tree health.</p></div></div>
+  <div class="srow reveal d1"><span class="snum">05</span><div class="sinfo"><h3>Hedge Trimming</h3><p>Precise shaping and maintenance of hedges to keep your property looking sharp year-round.</p></div></div>
+  <div class="srow reveal d2"><span class="snum">06</span><div class="sinfo"><h3>Emergency Call-out</h3><p>Rapid response for storm-damaged or hazardous trees. Available 7 days a week, any time of year.</p></div></div>
 </section>
 
 <!-- ABOUT -->
@@ -1054,7 +1139,7 @@ const SCENES = [
   { eyebrow: "Precision", title: `Cut with<br><em>confidence.</em>`, body: `The right cut, in the right place. Every time. We treat your trees with the same care we'd give our own.` },
   { eyebrow: "Controlled", title: `Lowered.<br><em>Safely.</em>`, body: `Rigged and lowered — not dropped. We protect your garden, your fences, everything around us.` },
   { eyebrow: "On the Ground", title: `Down &amp;<br><em>cleared away.</em>`, body: `Once it's down, we handle everything. We leave your garden exactly as we found it — except better.` },
-  { eyebrow: "Clean as can be", title: `Nothing left<br>but the <em>result.</em>`, body: `Chipped, loaded, and away. No mess, no fuss — just a perfectly managed tree and a happy customer.` },
+  { eyebrow: "Clean &amp; Gone", title: `Nothing left<br>but the <em>result.</em>`, body: `Chipped, loaded, and away. No mess, no fuss — just a perfectly managed tree and a happy customer.` },
 ];
 
 
